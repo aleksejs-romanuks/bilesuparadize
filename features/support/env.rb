@@ -1,5 +1,6 @@
 require "selenium-webdriver"
 require "webdrivers"
+require 'date'
 
 Before do
   $driver = Selenium::WebDriver.for :chrome
