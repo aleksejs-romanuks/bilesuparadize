@@ -14,4 +14,17 @@ class MainPage
     Elements.new(:xpath, "(//ul[@class='event-group']//a[@class='preselectedDays'])[#{index + 1}]")
   end
 
+  def open_calendar_month_page(number_of_needed_clicks, date_to_find)
+    xpath_beginning =  date_to_find == "from" ? "//*[@class='month-from topMenuMonthFrom hasDatepicker']" : "//*[@class='month-to topMenuMonthTill hasDatepicker']"
+    while number_of_needed_clicks != 0
+      if number_of_needed_clicks > 0
+        Elements.new(:xpath, xpath_beginning + "//*[@title='Nāk.']").click
+        number_of_needed_clicks = number_of_needed_clicks - 1
+      else
+        Elements.new(:xpath, xpath_beginning+"//*[@title='Iepr.']").click
+        number_of_needed_clicks = number_of_needed_clicks + 1
+      end
+    end
+  end
+
 end
