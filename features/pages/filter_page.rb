@@ -1,9 +1,15 @@
 class FilterPage
+  attr_accessor :city_filter, :filter_results
+
   def initialize
     @from_date = Elements.new(:xpath, "//div[@class='search-tools']//input[@placeholder='Datums no']")
     @until_date = Elements.new(:xpath, "//div[@class='search-tools']//input[@placeholder='Datums līdz']")
+    @city_filter = Elements.new(:xpath,"//select[@class='filterObjectCity']")
+    @filter_results = Elements.new(:xpath, "//div[@class='container searchResultsDiv']//table[@class='table table-striped searchResultsEventsSection']/tbody/tr")
   end
-
+  def check_if_content_is_loaded
+    @filter_results.check_if_displayed
+  end
   def get_dates_values
     [@from_date.get_attribute_when_appears('value'), @until_date.get_attribute_when_appears('value')]
   end

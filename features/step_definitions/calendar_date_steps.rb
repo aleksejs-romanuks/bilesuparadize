@@ -1,5 +1,5 @@
 When(/^I open calendar$/) do
-  sleep(3)
+  @pages.main.check_if_content_is_loaded
   @pages.main.calendar_button.click
 end
 

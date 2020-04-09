@@ -6,6 +6,10 @@ class MainPage
     @calendar_button = Elements.new(:class, "topMenuItemCalendar")
   end
 
+  def check_if_content_is_loaded
+    @calendar_button.check_if_displayed
+  end
+
   def count_calendar_shortcuts
     @calendar_shortcuts.get_list_of_elements.length
   end
