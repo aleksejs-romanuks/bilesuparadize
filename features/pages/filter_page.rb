@@ -1,10 +1,11 @@
 class FilterPage
-  attr_accessor :city_filter, :filter_results
+  attr_accessor :city_filter, :filter_results, :venue_filter
 
   def initialize
     @from_date = Elements.new(:xpath, "//div[@class='search-tools']//input[@placeholder='Datums no']")
     @until_date = Elements.new(:xpath, "//div[@class='search-tools']//input[@placeholder='Datums līdz']")
     @city_filter = Elements.new(:xpath,"//select[@class='filterObjectCity']")
+    @venue_filter = Elements.new(:xpath,"//select[@class='filterObjectVenue']")
     @filter_results = Elements.new(:xpath, "//div[@class='container searchResultsDiv']//table[@class='table table-striped searchResultsEventsSection']/tbody/tr")
   end
   def check_if_content_is_loaded
