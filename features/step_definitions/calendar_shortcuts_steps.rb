@@ -3,18 +3,20 @@ When(/^I open calendar and click on calendar shortcut$/) do
 
   @pages.main.count_calendar_shortcuts.times do |index|
     begin
-      sleep(3)
-      @pages.main.calendar_button.click
+
+      @pages.main.calendar_button.click_until_is_displayed(:xpath, "//ul[@class='dropdown-menu topCalendarContent']")
 
       shortcut_button = @pages.main.get_calendar_shortcut_by_index(index)
 
-      expected_date_from, expected_date_until = @pages.filter.get_calendar_expected_dates_by_shortcut_text(shortcut_button.get_text_when_appears)
+      shortcut_button_text = shortcut_button.get_text_when_appears
+
+      expected_date_from, expected_date_until = @pages.filter.get_calendar_expected_dates_by_shortcut_text(shortcut_button_text)
 
       shortcut_button.click
 
       @pages.filter.validate_calendar_dates(expected_date_from, expected_date_until)
     rescue => exception
-      @exception_list << "Exception was catched on index: #{index} with message <<#{exception}>>"
+      @exception_list << "Exception was catched on shortcut '#{shortcut_button_text}' with message <<#{exception}>>"
     end
     $driver.navigate.back
   end

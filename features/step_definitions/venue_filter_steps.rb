@@ -18,6 +18,5 @@ Then(/Performances located in selected venue are listed*/) do
     text = Elements.new(:xpath, "//div[@class='container searchResultsDiv']//table[@class='table table-striped searchResultsEventsSection']/tbody/tr[#{index+1}]/td/h2/small").get_text_when_appears
 
     raise "Exception: Performance on page #{page_number} has wrong venue. (Actual venue: '#{text}', expected venue: #{@venue})" unless text.downcase.include? @venue.downcase
-    puts "Exception: Performance on page #{page_number} has wrong venue. (Actual venue: '#{text}', expected venue: #{@venue})"
   end
 end

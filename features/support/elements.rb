@@ -17,6 +17,14 @@ class Elements
     end
   end
 
+  def click_until_is_displayed(element_to_be_displayed_type, element_to_be_displayed_value , wait_time = 5)
+    wait = Selenium::WebDriver::Wait.new(timeout: wait_time)
+    wait.until do
+      $driver.find_element(@type, @value).click
+      return true if $driver.find_element(element_to_be_displayed_type, element_to_be_displayed_value).displayed?
+    end
+  end
+
   def set(text, wait_time = 5)
     wait = Selenium::WebDriver::Wait.new(timeout: wait_time)
     wait.until do

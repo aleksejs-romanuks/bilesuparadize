@@ -18,9 +18,7 @@ class FilterPage
   def validate_calendar_dates(expected_from_date, expected_until_date)
     from_date, until_date = get_dates_values
     raise "Exception: Wrong from date (Expected: '#{expected_from_date}' but got '#{from_date}')" unless expected_from_date == from_date
-    puts  "Exception: Wrong from date (Expected: '#{expected_from_date}' but got '#{from_date}')"
     raise "Exception: Wrong until date (Expected: '#{expected_until_date}' but got '#{until_date}')" unless expected_until_date == until_date
-    puts "Exception: Wrong until date (Expected: '#{expected_until_date}' but got '#{until_date}')"
   end
 
   def get_calendar_expected_dates_by_shortcut_text(text)
