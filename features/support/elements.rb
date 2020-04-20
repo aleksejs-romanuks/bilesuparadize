@@ -17,6 +17,14 @@ class Elements
     end
   end
 
+  def click_until_is_displayed(element_to_be_displayed_type, element_to_be_displayed_value , wait_time = 5)
+    wait = Selenium::WebDriver::Wait.new(timeout: wait_time)
+    wait.until do
+      $driver.find_element(@type, @value).click
+      return true if $driver.find_element(element_to_be_displayed_type, element_to_be_displayed_value).displayed?
+    end
+  end
+
   def set(text, wait_time = 5)
     wait = Selenium::WebDriver::Wait.new(timeout: wait_time)
     wait.until do
@@ -59,6 +67,22 @@ class Elements
         return attribute if !attribute.nil? && !attribute.empty?
       end
     }
+  end
+
+  def get_option_when_appears(option_text, wait_time = 5)
+    wait = Selenium::WebDriver::Wait.new(timeout: wait_time)
+    wait.until {
+      dropdown = $driver.find_element(@type, @value)
+      Selenium::WebDriver::Support::Select.new(dropdown).select_by(:text, option_text)
+      true
+    }
+  end
+
+  def check_if_displayed(wait_time = 5)
+    wait = Selenium::WebDriver::Wait.new(timeout: wait_time)
+    wait.until do
+      true if $driver.find_element(@type, @value).displayed?
+    end
   end
 
 end
