@@ -6,3 +6,4 @@ Feature: Calendar Shortcuts
     And     I open calendar and click on calendar shortcut
     Then    Corresponding filter is applied
 
+

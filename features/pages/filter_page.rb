@@ -41,5 +41,4 @@ class FilterPage
     end
   end
 
-
 end

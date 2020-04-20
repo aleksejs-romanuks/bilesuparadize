@@ -6,5 +6,4 @@ class Pages
   def filter
     FilterPage.new
   end
-
 end

@@ -1,4 +1,5 @@
 When(/^I open calendar and click on calendar shortcut$/) do
+
   @exception_list = []
 
   @pages.main.count_calendar_shortcuts.times do |index|
